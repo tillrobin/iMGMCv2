@@ -8,8 +8,8 @@
 
 ## Description
 *Creation of an updated mouse gut gene catalog*
-  - ~200K MAGs representing 3k species
-  - more diverse samples from new studies (~10) and public studies (~80)
+  - # MAGs representing # species
+  - more diverse samples from new studies (~#) and public studies (~#)
   - integrated isolated species
   - improved pipelines
 
@@ -19,8 +19,8 @@
 
 | Description | Size | Link |
 |--|--|--|
-| representative mMAGs (n=3,###) | # GB | [iMGMCv2-mMAGs-dereplicated_genomes.tar.gz](https://nubes.helmholtz-berlin.de/s/dbpSFs97NTbfJbD) | 
-| representative hqMAGs (n=2,###) | # GB | [iMGMCv2-hqMAGs-dereplicated_genomes.tar.gz](https://nubes.helmholtz-berlin.de/s/dbpSFs97NTbfJbD) | 
+| representative mMAGs (n=#,###) | # GB | [iMGMCv2-mMAGs-dereplicated_genomes.tar.gz](https://nubes.helmholtz-berlin.de/s/dbpSFs97NTbfJbD) | 
+| representative hqMAGs (n=#,###) | # GB | [iMGMCv2-hqMAGs-dereplicated_genomes.tar.gz](https://nubes.helmholtz-berlin.de/s/dbpSFs97NTbfJbD) | 
 | all mMAGs (n=###,###) | ## GB | [iMGMCv2-mMAGs.tar.gz](https://nubes.helmholtz-berlin.de/s/dbpSFs97NTbfJbD)| 
 | Annotations by CheckM, dRep-Clustering, GTDB-Tk | # MB | [MAG-annotation_CheckM_dRep_GTDB-Tk.tar.gz](https://nubes.helmholtz-berlin.de/s/dbpSFs97NTbfJbD) |
 | Functional annotations (hqMAGs by eggNOG mapper v2) | ### MB | [hqMAGs.emapper.annotations.gz](https://nubes.helmholtz-berlin.de/s/dbpSFs97NTbfJbD) |
