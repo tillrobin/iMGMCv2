@@ -20,9 +20,9 @@
 
 | Description | Size | Link |
 |--|--|--|
-| representative mMAGs (n=#,###) | # GB | [iMGMCv2-mMAGs-dereplicated_genomes.tar.gz](https://zenodo.org/record/) | 
-| representative hqMAGs (n=#,###) | # GB | [iMGMCv2-hqMAGs-dereplicated_genomes.tar.gz](https://zenodo.org/record/) | 
-| all mMAGs (n=###,###) | ## GB | [iMGMCv2-mMAGs.tar.gz](https://zenodo.org/record/)| 
-| Annotations by CheckM, dRep-Clustering, GTDB-Tk | # MB | [MAG-annotation_CheckM_dRep_GTDB-Tk.tar.gz](https://zenodo.org/record/) |
-| Functional annotations (hqMAGs by eggNOG mapper v2) | ### MB | [hqMAGs.emapper.annotations.gz](https://zenodo.org/record/) |
+| representative mMAGs (n=#,###) | # GB | [iMGMCv2-mMAGs-dereplicated_genomes.tar.gz](https://nubes.helmholtz-berlin.de/s/dbpSFs97NTbfJbD) | 
+| representative hqMAGs (n=#,###) | # GB | [iMGMCv2-hqMAGs-dereplicated_genomes.tar.gz](https://nubes.helmholtz-berlin.de/s/dbpSFs97NTbfJbD) | 
+| all mMAGs (n=###,###) | ## GB | [iMGMCv2-mMAGs.tar.gz](https://nubes.helmholtz-berlin.de/s/dbpSFs97NTbfJbD)| 
+| Annotations by CheckM, dRep-Clustering, GTDB-Tk | # MB | [MAG-annotation_CheckM_dRep_GTDB-Tk.tar.gz](https://nubes.helmholtz-berlin.de/s/dbpSFs97NTbfJbD) |
+| Functional annotations (hqMAGs by eggNOG mapper v2) | ### MB | [hqMAGs.emapper.annotations.gz](https://nubes.helmholtz-berlin.de/s/dbpSFs97NTbfJbD) |
 
