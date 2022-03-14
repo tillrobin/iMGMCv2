@@ -8,8 +8,8 @@
 
 ## Description
 *Creation of an updated mouse gut gene catalog*
-  - # MAGs representing # species
-  - more diverse samples from new studies (~#) and public studies (~#)
+  - MAGs representing n species
+  - more diverse samples from new studies (~n) and public studies (~n)
   - integrated isolated species
   - improved pipelines
 
