@@ -30,29 +30,29 @@
 | Functional annotations (hqMAGs by eggNOG mapper v2) | ### MB | [hqMAGs.emapper.annotations.gz](https://1drv.ms/f/s!Am-fED1L6602hcVH65QUhQZse5vOzA) |
 | preprocess mapping-index | ## GB | [hqMAGs.emapper.annotations.gz](https://1drv.ms/f/s!Am-fED1L6602hcVH65QUhQZse5vOzA) |
 
-## Pipilines
+# Pipelines
 
-### Genome based abundance profilling
+## Genome based abundance profilling
 
-**1. We recommend the use of [Bioconda](http://bioconda.github.io/) eg create bioconda environment with bwa2 and bbmap with:
+###1. We recommend the use of [Bioconda](http://bioconda.github.io/) eg create bioconda environment with bwa2 and bbmap with:
 
     conda create -n iMGMCv2 bwa2 bbmap
 	conda activate iMGMCv2
 
-**2. Download or create bwa2 index form iMGMCv2-DU6-mMAGs.fasta
+##2. Download or create bwa2 index form iMGMCv2-DU6-mMAGs.fasta
 
-***2a. Download bwa2-index (Warning 25,7GB but you can use option 2b as an alternative)
+###2a. Download bwa2-index (Warning 25,7GB but you can use option 2b as an alternative)
 
     download [iMGMCv2-DU6.tar.gz](https://1drv.ms/f/s!Am-fED1L6602hcVH65QUhQZse5vOzA) 
 	tar -xzf iMGMCv2-DU6.tar.gz
 
-***2b. Download mMAG-fasta and run bwa2-index (700 MB, will take some hours to process)
+###2b. Download mMAG-fasta and run bwa2-index (700 MB, will take some hours to process)
 
     download [iMGMCv2-DU6-mMAGs.fasta.gz](https://1drv.ms/f/s!Am-fED1L6602hcVH65QUhQZse5vOzA) 
 	gzip -d iMGMCv2-DU6-mMAGs.fasta.gz
 	bwa-mem2 index iMGMCv2-DU6-mMAGs.fasta
 
-**3. Map the samples with bwa2 to the iMGMCv2-DU6-mMAGs.fasta
+##3. Map the samples with bwa2 to the iMGMCv2-DU6-mMAGs.fasta
 
 	Cores=24                      # please check your server
 	RefFasta=DU6.fasta            # bwa2 index
@@ -60,18 +60,18 @@
 	FastqPathR2=/path/to/file/R2  # set path
 	SampleName=MySampleName       # create name for the samples
 
-***3a. Mapping to sam-file and sumup via pipeup (bbmap-tools)
+###3a. Mapping to sam-file and sumup via pipeup (bbmap-tools)
 
     bwa-mem2 mem -t ${Cores} ${RefFasta} ${FastqPathR1} ${FastqPathR2} | pigz --fast > /tmp/${SampleName}.sam.gz
 	pileup.sh in=/tmp/${SampleName}.sam.gz covstats=${SampleName}.covstats 32bit=t 2> ${SampleName}.log
 	rm /tmp/${SampleName}.sam.gz
 
-***3b. Mapping and pipe direct to pipeup (need more memory)
+###3b. Mapping and pipe direct to pipeup (need more memory)
 
     bwa-mem2 mem -t ${Cores} ${RefFasta} ${FastqPathR1} ${FastqPathR2} | \
 	pileup.sh in=stdin.sam covstats=${SampleName}.covstats 32bit=t 2> ${SampleName}.log
 
-**4. Convert covstats to TPM (normalize count data to genome size and relative to 1 million reads)
+##4. Convert covstats to TPM (normalize count data to genome size and relative to 1 million reads)
 
     bash TPM-Script ${SampleName}.covstats # create TPM-${SampleName}.txt
 	bash create-abundance-table.sh         # summarizing all Samples into one matrix file
