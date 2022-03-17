@@ -19,18 +19,37 @@
 
 | Description | Size | Link |
 |--|--|--|
-| representative mMAGs (n=#,###) | # GB | [iMGMCv2-mMAGs-dereplicated_genomes.tar.gz](https://nubes.helmholtz-berlin.de/s/dbpSFs97NTbfJbD) | 
-| representative hqMAGs (n=#,###) | # GB | [iMGMCv2-hqMAGs-dereplicated_genomes.tar.gz](https://nubes.helmholtz-berlin.de/s/dbpSFs97NTbfJbD) | 
-| all mMAGs (n=###,###) | ## GB | [iMGMCv2-mMAGs.tar.gz](https://nubes.helmholtz-berlin.de/s/dbpSFs97NTbfJbD)| 
-| Annotations by CheckM, dRep-Clustering, GTDB-Tk | # MB | [MAG-annotation_CheckM_dRep_GTDB-Tk.tar.gz](https://nubes.helmholtz-berlin.de/s/dbpSFs97NTbfJbD) |
-| Functional annotations (hqMAGs by eggNOG mapper v2) | ### MB | [hqMAGs.emapper.annotations.gz](https://nubes.helmholtz-berlin.de/s/dbpSFs97NTbfJbD) |
-| preprocess mapping-index | ## GB | [hqMAGs.emapper.annotations.gz](https://nubes.helmholtz-berlin.de/s/dbpSFs97NTbfJbD) |
+| representative mMAGs (n=#,###) | # GB | [iMGMCv2-mMAGs-dereplicated_genomes.tar.gz](https://1drv.ms/f/s!Am-fED1L6602hcVH65QUhQZse5vOzA) | 
+| representative hqMAGs (n=#,###) | # GB | [iMGMCv2-hqMAGs-dereplicated_genomes.tar.gz](https://1drv.ms/f/s!Am-fED1L6602hcVH65QUhQZse5vOzA) | 
+| all mMAGs (n=###,###) | ## GB | [iMGMCv2-mMAGs.tar.gz](https://1drv.ms/f/s!Am-fED1L6602hcVH65QUhQZse5vOzA)| 
+| Annotations by CheckM, dRep-Clustering, GTDB-Tk | # MB | [MAG-annotation_CheckM_dRep_GTDB-Tk.tar.gz](https://1drv.ms/f/s!Am-fED1L6602hcVH65QUhQZse5vOzA) |
+| Functional annotations (hqMAGs by eggNOG mapper v2) | ### MB | [hqMAGs.emapper.annotations.gz](https://1drv.ms/f/s!Am-fED1L6602hcVH65QUhQZse5vOzA) |
+| preprocess mapping-index | ## GB | [hqMAGs.emapper.annotations.gz](https://1drv.ms/f/s!Am-fED1L6602hcVH65QUhQZse5vOzA) |
 
 ## Pipilines
 
 ### Genome based abundance profilling
 
-download index, TPM-Script, summarizing script
+**1. We recommend the use of [Bioconda](http://bioconda.github.io/) eg create bioconda environment with bwa2 and bbmap with:
+
+    conda create -n iMGMCv2 bwa2 bbmap
+	conda activate iMGMCv2
+
+**2a. Download bwa2-index (Warning 25,7GB but you can use option 2b as an alternative)
+
+    download [iMGMCv2-DU5.tar.gz](https://1drv.ms/f/s!Am-fED1L6602hcVH65QUhQZse5vOzA) 
+	tar -xzf iMGMCv2-DU5.tar.gz
+
+**2b. Download mMAG-fasta and run bwa2-index (700 MB, like take some hours to process)
+
+    download [iMGMCv2-DU6-mMAGs.fasta.gz](https://1drv.ms/f/s!Am-fED1L6602hcVH65QUhQZse5vOzA) 
+	gzip -d iMGMCv2-DU6-mMAGs.fasta.gz
+	bwa-mem2 index iMGMCv2-DU6-mMAGs.fasta
+
+**3. Map the samples with bwa2 to the iMGMCv2-DU6-mMAGs.fasta
+
+
+TPM-Script, summarizing script
 load bioconda, run mapping
 pipeup sam-file, norm to TPM, sumup for all samples, plot data
 
