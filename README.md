@@ -35,12 +35,14 @@
     conda create -n iMGMCv2 bwa2 bbmap
 	conda activate iMGMCv2
 
-**2a. Download bwa2-index (Warning 25,7GB but you can use option 2b as an alternative)
+**2. Download or create bwa2 index form iMGMCv2-DU6-mMAGs.fasta
+
+***2a. Download bwa2-index (Warning 25,7GB but you can use option 2b as an alternative)
 
     download [iMGMCv2-DU5.tar.gz](https://1drv.ms/f/s!Am-fED1L6602hcVH65QUhQZse5vOzA) 
 	tar -xzf iMGMCv2-DU5.tar.gz
 
-**2b. Download mMAG-fasta and run bwa2-index (700 MB, like take some hours to process)
+***2b. Download mMAG-fasta and run bwa2-index (700 MB, will take some hours to process)
 
     download [iMGMCv2-DU6-mMAGs.fasta.gz](https://1drv.ms/f/s!Am-fED1L6602hcVH65QUhQZse5vOzA) 
 	gzip -d iMGMCv2-DU6-mMAGs.fasta.gz
@@ -48,10 +50,28 @@
 
 **3. Map the samples with bwa2 to the iMGMCv2-DU6-mMAGs.fasta
 
+	Cores=24                      # please check your server
+	RefFasta=DU6.fasta            # bwa2 index
+	FastqPathR1=/path/to/file/R1  # set path
+	FastqPathR2=/path/to/file/R2  # set path
+	SampleName=MySampleName       # create name for the samples
 
-TPM-Script, summarizing script
-load bioconda, run mapping
-pipeup sam-file, norm to TPM, sumup for all samples, plot data
+***3a. Mapping to sam-file and sumup via pipeup (bbmap-tools)
+
+    bwa-mem2 mem -t ${Cores} ${RefFasta} ${FastqPathR1} ${FastqPathR2} | pigz --fast > /tmp/${SampleName}.sam.gz
+	pileup.sh in=/tmp/${SampleName}.sam.gz covstats=${SampleName}.covstats 32bit=t 2> ${SampleName}.log
+	rm /tmp/${SampleName}.sam.gz
+
+***3b. Mapping and pipe direct to pipeup (need more memory)
+
+    bwa-mem2 mem -t ${Cores} ${RefFasta} ${FastqPathR1} ${FastqPathR2} | \
+	pileup.sh in=stdin.sam covstats=${SampleName}.covstats 32bit=t 2> ${SampleName}.log
+
+**4. Convert covstats to TPM (normalize count data to genome size and relative to 1 million reads)
+
+    bash TPM-Script ${SampleName}.covstats # create TPM-${SampleName}.txt
+	bash create-abundance-table.sh         # summarizing all Samples into one matrix file
+
 
 
 See our paper for details.
