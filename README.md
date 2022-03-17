@@ -17,6 +17,10 @@
 
 ### Metagenome-assembled genomes (MAGs) :
 
+```diff
+- The data is still protected at the moment, we will change this as soon as possible.
+```
+
 | Description | Size | Link |
 |--|--|--|
 | representative mMAGs (n=#,###) | # GB | [iMGMCv2-mMAGs-dereplicated_genomes.tar.gz](https://1drv.ms/f/s!Am-fED1L6602hcVH65QUhQZse5vOzA) | 
@@ -39,8 +43,8 @@
 
 ***2a. Download bwa2-index (Warning 25,7GB but you can use option 2b as an alternative)
 
-    download [iMGMCv2-DU5.tar.gz](https://1drv.ms/f/s!Am-fED1L6602hcVH65QUhQZse5vOzA) 
-	tar -xzf iMGMCv2-DU5.tar.gz
+    download [iMGMCv2-DU6.tar.gz](https://1drv.ms/f/s!Am-fED1L6602hcVH65QUhQZse5vOzA) 
+	tar -xzf iMGMCv2-DU6.tar.gz
 
 ***2b. Download mMAG-fasta and run bwa2-index (700 MB, will take some hours to process)
 
