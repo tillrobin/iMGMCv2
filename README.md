@@ -56,17 +56,17 @@
 
 	Cores=24                      # please check your server
 	RefFasta=DU6.fasta            # bwa2 index
-	FastqPathR1=/path/to/file/R1  # set path
-	FastqPathR2=/path/to/file/R2  # set path
+	FastqPathR1=/path/to/file/R1  # set path to read 1
+	FastqPathR2=/path/to/file/R2  # set path to read 2
 	SampleName=MySampleName       # create name for the samples
 
-### 3a. Mapping to sam-file and sumup via pipeup (bbmap-tools)
+### 3a. Mapping to sam-file and sumup via pipeup from bbmap-tools (create sam-file I/O-weighted)
 
     bwa-mem2 mem -t ${Cores} ${RefFasta} ${FastqPathR1} ${FastqPathR2} | pigz --fast > /tmp/${SampleName}.sam.gz
 	pileup.sh in=/tmp/${SampleName}.sam.gz covstats=${SampleName}.covstats 32bit=t 2> ${SampleName}.log
 	rm /tmp/${SampleName}.sam.gz
 
-### 3b. Mapping and pipe direct to pipeup (need more memory)
+### 3b. Mapping and pipe direct to pipeup (need more memory ~100GB insteat of 60GB, about 10% faster)
 
     bwa-mem2 mem -t ${Cores} ${RefFasta} ${FastqPathR1} ${FastqPathR2} | \
 	pileup.sh in=stdin.sam covstats=${SampleName}.covstats 32bit=t 2> ${SampleName}.log
@@ -76,6 +76,31 @@
     bash TPM-Script ${SampleName}.covstats # create TPM-${SampleName}.txt
 	bash create-abundance-table.sh         # summarizing all Samples into one matrix file
 
+## 5. [Optimal] join abundance-table with more samples
+
+We are using a close reference profiling, so we can join other samples to the abundance-table. This make it easy to analyze your samples in a bigger context.
+
+	YourTable=abundance-table.txt              # table form step before
+	OtherTable=other-abundance-table.txt       # another table
+	SampleList=RefSamplesMircobiotas.txt       # File with names of samples you want to join (alternative all)
+
+    bash add-samples.sh ${YourTable} ${RunTable} ${SampleList} # add selected samples
+	bash add-samples.sh ${YourTable} ${RunTable}               # add all samples
+
+## 6. Plot data
+
+First create a mapping files with all needed samples and the metadata (like a simple group):
+
+Sample	Factor
+Trt1	Treatment
+Trt2	Treatment
+Trt3	Treatment
+Con1	Control
+Con2	Control
+Con3	Control
+
+
+This data can used for downstream processing like ploting in R:
 
 
 See our paper for details.
